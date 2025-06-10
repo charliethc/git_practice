@@ -4,6 +4,10 @@ import '../models/task.dart';
 class FirestoreService {
   final _db = FirebaseFirestore.instance;
 
+  String newId() {
+    return _db.collection('tasks').doc().id;
+  }
+
   Stream<List<Task>> tasksStream() {
     return _db.collection('tasks').snapshots().map((snapshot) {
       return snapshot.docs

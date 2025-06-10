@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/task.dart';
 import '../services/firestore_service.dart';
+import 'task_detail_screen.dart';
 
 class TaskListScreen extends StatelessWidget {
   final FirestoreService service;
@@ -33,7 +34,14 @@ class TaskListScreen extends StatelessWidget {
                   );
                 },
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => TaskDetailScreen(task: task, service: service),
+                  ),
+                );
+              },
             );
           },
         );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/urgency_setting.dart';
+import '../models/task.dart';
 
 class SettingsScreen extends StatefulWidget {
-  final Map<String, UrgencySetting> settings;
-  final void Function(String, int) onChanged;
+  final Map<Urgency, UrgencySetting> settings;
+  final void Function(Urgency, int) onChanged;
   const SettingsScreen({super.key, required this.settings, required this.onChanged});
 
   @override
@@ -11,7 +12,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  late Map<String, TextEditingController> _controllers;
+  late Map<Urgency, TextEditingController> _controllers;
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         children: widget.settings.keys.map((key) {
           return ListTile(
-            title: Text('$key minutes'),
+            title: Text('${key.name} minutes'),
             trailing: SizedBox(
               width: 80,
               child: TextField(
